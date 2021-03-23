@@ -1,5 +1,6 @@
 const gameContainer = document.getElementById('game');
 let gameDivs = document.querySelectorAll('#game div');
+let resetBtn = document.querySelector('#resetBtn');
 let card1 = null;
 let card2 = null;
 let flipped = 0;
@@ -76,6 +77,9 @@ function handleCardClick(event) {
 
     if (!card1 || !card2) {
       card1 = card1 || currentCard;
+      if (card1 !== null && card1 === currentCard) {
+        flipped--;
+      }
       card2 = currentCard === card1 ? null : currentCard;
       console.log('card1', card1);
       console.log('card2', card2);
@@ -105,7 +109,7 @@ function handleCardClick(event) {
           card1 = null;
           card2 = null;
           flipped = 0;
-        }, 1000);
+        }, 500);
       }
     }
   }
@@ -114,17 +118,22 @@ function handleCardClick(event) {
 function gameOver() {
   setTimeout(function () {
     alert('YAYY You WONN! 🎉');
-  }, 500);
+  }, 0);
   resetGame();
 }
 
+resetBtn.addEventListener('click', resetGame);
+
 function resetGame() {
-  let resetBtn = document.getElementById('resetBtn');
-  resetBtn.addEventListener('click', function () {
-    console.log('resetting game');
-    createDivsForColors(shuffledColors);
-    location.reload();
-  });
+  console.log('resetting game');
+  card1 = null;
+  card2 = null;
+  flipped = 0;
+  matchedCards = 0;
+  gameContainer.querySelectorAll('*').forEach((div) => div.remove());
+  shuffledColors = shuffle(COLORS);
+  createDivsForColors(shuffledColors);
+  // location.reload();
 }
 
 // when the DOM loads
