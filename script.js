@@ -77,7 +77,7 @@ function handleCardClick(event) {
 
     if (!card1 || !card2) {
       card1 = card1 || currentCard;
-      if (card1 !== null && card1 === currentCard) {
+      if (card2 == null && card2 === card1) {
         flipped--;
       }
       card2 = currentCard === card1 ? null : currentCard;
@@ -98,7 +98,9 @@ function handleCardClick(event) {
         flipped = 0;
         matchedCards += 2;
         if (matchedCards === COLORS.length) {
-          gameOver();
+          setTimeout(function () {
+            gameOver();
+          }, 1000);
         }
       } else {
         setTimeout(function () {
@@ -116,9 +118,7 @@ function handleCardClick(event) {
 }
 
 function gameOver() {
-  setTimeout(function () {
-    alert('YAYY You WONN! 🎉');
-  }, 0);
+  alert('YAYY Congratulations You WONN! 🎉');
   resetGame();
 }
 

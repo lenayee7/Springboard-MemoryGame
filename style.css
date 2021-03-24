@@ -1,6 +1,7 @@
 body {
   background-image: linear-gradient(to bottom right, #00b8ff, #5fff9ccf);
   background-size: cover;
+  height: 100vh;
 }
 
 #game {
