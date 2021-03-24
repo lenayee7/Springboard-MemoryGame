@@ -98,9 +98,7 @@ function handleCardClick(event) {
         flipped = 0;
         matchedCards += 2;
         if (matchedCards === COLORS.length) {
-          setTimeout(function () {
-            gameOver();
-          }, 1000);
+          setTimeout(() => gameOver(), 500);
         }
       } else {
         setTimeout(function () {
